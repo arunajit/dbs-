@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics import accuracy_score
 from nltk.corpus import stopwords
 from textblob import Word
 from gensim.scripts.glove2word2vec import glove2word2vec
@@ -62,7 +63,8 @@ weights = 'distance'
 clf = sklearn.neighbors.KNeighborsClassifier(n_neighbors, weights=weights)
 
 #test 
-clf.fit(train, train_head)
-test = clf.predict(test_head)
+clf.fit(train_head,train)
+out = clf.predict(test_head)
 
+score = accuracy_score(train_head, out)
 
