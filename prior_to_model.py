@@ -10,7 +10,7 @@ import string
 
 dataset = pd.read_csv('./output_file.csv')
 df = pd.DataFrame(dataset)
-train,test=train_test_split(df['Content'],test_size=0.2)
+train,test,train_head,test_head=train_test_split(df['Content'], df['FileName'],test_size=0.2)
 labels  =['employment','amendment']
 
 #punctuation
@@ -52,4 +52,19 @@ outp=[]
 glove2word2vec(train['Content'], outp)
 model = KeyedVectors.load_word2vec_format(outp, binary=False)
 print((model['go'] + model['away'])/2)
+
+
+
+from sklearn.naive_hayes import MuntinomialNB
+
+#classifier
+n_neighbors = 2
+weights = 'uniform'
+weights = 'distance'
+clf = sklearn.neighbors.KNeighborsClassifier(n_neighbors, weights=weights)
+
+#test 
+clf.fit(train, train_head)
+test = clf.predict(test_head)
+
 
