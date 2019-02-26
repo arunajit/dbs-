@@ -55,8 +55,6 @@ print((model['go'] + model['away'])/2)
 
 
 
-from sklearn.naive_hayes import MuntinomialNB
-
 #classifier
 n_neighbors = 2
 weights = 'uniform'
